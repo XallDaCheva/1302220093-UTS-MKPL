@@ -47,28 +47,33 @@ public class Employee {
 		childIdNumbers = new LinkedList<String>();
 	}
 	
+	private static final int BASE_SALARY_GRADE_1 = 3000000;
+	private static final int BASE_SALARY_GRADE_2 = 5000000;
+	private static final int BASE_SALARY_GRADE_3 = 7000000;
+	private static final double FOREIGNER_SALARY_MULTIPLIER = 1.5;
+	
 	/**
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 	
-	public void setMonthlySalary(int grade) {	
-		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}
+	public void setMonthlySalary(int grade) {
+	    switch (grade) {
+	        case 1:
+	            monthlySalary = BASE_SALARY_GRADE_1;
+	            break;
+	        case 2:
+	            monthlySalary = BASE_SALARY_GRADE_2;
+	            break;
+	        case 3:
+	            monthlySalary = BASE_SALARY_GRADE_3;
+	            break;
+	        default:
+	            monthlySalary = 0;
+	    }
+	    if (isForeigner) {
+	        monthlySalary *= FOREIGNER_SALARY_MULTIPLIER;
+	    }
 	}
 	
 	public void setAnnualDeductible(int deductible) {	
